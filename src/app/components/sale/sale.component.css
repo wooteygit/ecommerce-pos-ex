@@ -1,0 +1,44 @@
+.page-nav span {
+    font-weight: bold;
+}
+
+.page-nav.active span {
+    color: #1976D2;
+}
+
+.grid {
+    padding: .5rem;
+}
+
+.item-grid {
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    position: absolute;
+    left: .5rem;
+    right: .5rem;
+    bottom: .5rem;
+    top: .5rem;
+    background-color: #fff;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.item-pic {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.item-name {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-align: left;
+    background-color: rgba(0, 0, 0, .57);
+    color: #fff;
+    font-size: .8rem;
+}

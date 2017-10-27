@@ -1,0 +1,29 @@
+<div id="item-container" class="d-flex flex-column">
+    <div class="tbar d-flex flex-row">
+        <a class="d-flex v-center h-center btn-icon hidden-lg-up" touchable (singletap)="back()">
+            <i class="material-icons">arrow_back</i>
+        </a>
+        <div class="d-flex flex v-center pr-3 pl-lg-md">
+            <span class="page-title">All Items</span>
+        </div>
+        <a class="d-flex v-center h-center btn-icon" touchable (singletap)="add()">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+    <div class="h-line"></div>
+    <div class="flex d-flex gap">
+        <div class="flex v-scroll bg-light-4 shadow-border" scroller (scrollend)="fetch(page + 1)">
+            <div class="bg-light-4 shadow-border">
+                <div *ngFor="let i of itemData" class="d-flex flex-row v-center bt-line">
+                    <div class="pic d-flex v-center h-center">
+                        <img *ngIf="i.pic != null" class="img-fluid" [src]="i.pic" />
+                        <i *ngIf="i.pic == null" class="material-icons">warning</i>
+                    </div>
+                    <div class="flex pl-3 pr-3">{{i.name}}</div>
+                    <div class=" pr-3">฿{{i.price | number: '1.2-2'}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

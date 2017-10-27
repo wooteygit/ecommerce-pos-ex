@@ -1,0 +1,34 @@
+<div id="sidebar_panel" [ngClass]="'overlay' + ((menu.active)? ' active': '')" touchable (singletap)="menu.hideMenu()"></div>
+<div id="sidebar" [ngClass]="(menu.active)? 'active': ''">
+    <div class="account-menu d-flex flex-row text-white v-center p-3">
+        <div class="user-pic d-flex v-center h-center mr-3">
+            <i class="material-icons md-36">account_circle</i>
+        </div>
+        <div class="flex">{{authen.user.first_name + ' ' + authen.user.last_name}}</div>
+    </div>
+    <a class="main-menu d-flex flex-row text-white v-center p-3" (click)="menu.hideMenu()" routerLink="/sale" routerLinkActive="active">
+        <span class="flex">Sales</span>
+    </a>
+    <a class="main-menu d-flex flex-row text-white v-center p-3" (click)="menu.hideMenu()">
+        <span class="flex">Transactions</span>
+    </a>
+    <a class="main-menu d-flex flex-row text-white v-center p-3" (click)="menu.hideMenu()">
+        <span class="flex">Reports</span>
+    </a>
+    <a class="main-menu d-flex flex-row text-white v-center p-3" (click)="menu.hideMenu()" routerLink="/item" routerLinkActive="active">
+        <span class="flex">Items</span>
+    </a>
+    <a class="main-menu d-flex flex-row text-white v-center p-3">
+        <span class="flex">Settings</span>
+    </a>
+    <a class="main-menu d-flex flex-row text-white v-center p-3">
+        <span class="flex">Help</span>
+    </a>
+    <a class="main-menu d-flex flex-row text-white v-center p-3" (click)="logOut()">
+        <span class="flex">Log Out</span>
+    </a>
+</div>
+<div id="wrapper" class="d-flex">
+    <router-outlet></router-outlet>
+</div>
+<spinner [hidden]="!global.loading" [text]="global.loadingText"></spinner>

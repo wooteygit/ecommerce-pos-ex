@@ -1,0 +1,44 @@
+<div class="overlay d-flex h-center v-center">
+    <div class="d-flex flex-column bg-light-4 modal-border w-100-xs-down h-100-xs-down">
+        <div class="tbar d-flex flex-row v-center">
+            <div class="page-title flex pl-3">Payment</div>
+            <a class="d-flex v-center h-center btn-icon" touchable (singletap)="cancel()">
+                <i class="material-icons">close</i>
+            </a>
+        </div>
+        <div class="h-line"></div>
+        <div class="flex pt-3 pb-3">
+            <div class="container width-md">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Total</label>
+                            <h2>{{orderService.totalPrice | number: '1.2-2'}}฿</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 d-flex flex-row">
+                        <div class="form-group flex">
+                            <label>Cash</label>
+                            <input focus class="form-control" type="number" [(ngModel)]="cash">
+                        </div>
+                        <div class="pl-3 d-flex h-center v-center">
+                            <button type="button" class="btn btn-secondary" (click)="tender()">Tender</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-line"></div>
+        <div class="tbar d-flex flex-row v-center h-center">
+            <div class="flex pl-2">
+                <button class="btn btn-primary btn-lg btn-block" touchable (singletap)="confirm()">Confirm</button>
+            </div>
+            <div class="p-1"></div>
+            <div class="flex pr-2">
+                <button class="btn btn-danger btn-lg btn-block" touchable (singletap)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

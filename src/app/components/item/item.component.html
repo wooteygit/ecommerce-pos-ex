@@ -1,0 +1,23 @@
+<div class="flex d-flex p-relative">
+    <div id="item-menu">
+        <div class="tbar d-flex flex-row">
+            <a class="d-flex v-center h-center btn-icon hidden-lg-up" touchable (singletap)="menu.showMenu()">
+                <i class="material-icons">menu</i>
+            </a>
+            <div class="d-flex flex v-center pr-3 pl-lg-md">
+                <span class="page-title">Item</span>
+            </div>
+        </div>
+        <div class="h-line"></div>
+        <div class="v-scroll mh-100 bg-light-4">
+            <a routerLink="/item/list" routerLinkActive="selected" class="item-menu d-flex flex-row v-center bt-line">
+                <div class="flex p-3">All Items</div>
+            </a>
+            <a routerLink="/item/category" routerLinkActive="selected" class="item-menu d-flex flex-row v-center bt-line">
+                <div class="flex p-3">Category</div>
+            </a>
+        </div>
+    </div>
+    <div class="v-line hidden-sm-down"></div>
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,100 @@
+<div class="flex d-flex flex-row">
+    <div class="flex-2 d-flex flex-column">
+        <div class="tbar d-flex flex-row">
+            <a class="d-flex v-center h-center btn-icon hidden-lg-up" touchable (singletap)="menu.showMenu()">
+                <i class="material-icons">menu</i>
+            </a>
+            <div class="d-flex flex-1 v-center pr-3 pl-lg-md">
+                <select class="form-control">
+                    <option>All Items</option>
+                </select>
+            </div>
+            <div class="d-flex flex-2 v-center pr-2-xs-down">
+                <input class="form-control" type="text" placeholder="Search All Items" [(ngModel)]="query">
+            </div>
+            <a [hidden]="!listMode" class="d-flex v-center h-center btn-icon hidden-xs-down" touchable (singletap)="showGrid()">
+                <i class="material-icons">grid_on</i>
+            </a>
+            <a [hidden]="!gridMode" class="d-flex v-center h-center btn-icon hidden-xs-down" touchable (singletap)="showList()">
+                <i class="material-icons">grid_off</i>
+            </a>
+        </div>
+        <div class="h-line"></div>
+        <div class="flex d-flex flex-column {{(!gridMode)? 'd-none': ''}}">
+            <div class="grid flex d-flex flex-column">
+                <div *ngFor="let i of gridItems" class="flex d-flex flex-row">
+                    <div *ngFor="let j of i.items" class="flex p-relative">
+                        <div *ngIf="j.pic" class="item-grid">
+                            <img *ngIf="j.pic != null" class="item-pic" [src]="j.pic" />
+                            <div class="item-name p-1">{{j.name}}</div>
+                            <!-- <div class="flex">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h-line"></div>
+            <div class="tbar d-flex flex-row">
+                <a *ngFor="let i of gridMenus; index as idx" class="page-nav {{(i.active)? 'active': ''}} flex d-flex v-center h-center btn-icon" touchable (singletap)="showGrid(idx)">
+                    <span>{{i.index + 1}}</span>
+                </a>
+                <!-- <a class="page-nav {{(listMode)? 'active': ''}} flex d-flex v-center h-center btn-icon" touchable (singletap)="showList()">
+                    <i class="material-icons">format_list_bulleted</i>
+                </a> -->
+            </div>
+        </div>
+        <div class="flex d-flex gap {{(!listMode)? 'd-none': ''}} p-relative">
+            <div class="flex v-scroll bg-light-4 shadow-border">
+                <div *ngFor="let i of itemData | itemFilter:query" class="d-flex flex-row v-center pointer bt-line" (click)="orderService.add(i)">
+                    <div class="pic d-flex v-center h-center">
+                        <img *ngIf="i.pic != null" class="img-fluid" [src]="i.pic" />
+                        <i *ngIf="i.pic == null" class="material-icons">warning</i>
+                    </div>
+                    <div class="flex pl-3 pr-3">{{i.name}}</div>
+                    <div class=" pr-3">฿{{i.price | number: '1.2-2'}}</div>
+                </div>
+            </div>
+            <spinner [hidden]="!itemLoading"></spinner>
+        </div>
+        <div class="h-line hidden-md-up"></div>
+        <div class="tbar d-flex flex-row hidden-md-up">
+            <div class="d-flex flex flex-row v-center" touchable (singletap)="showBill()">
+                <div class="flex">
+                    <span class="pl-3 pr-3">Current Sale ({{orderService.totalQty}})</span>
+                </div>
+                <i class="material-icons pr-2">keyboard_arrow_down</i>
+            </div>
+            <div class="tbar d-flex v-center h-center pl-2 pr-2" style="min-width: 200px">
+                <button [disabled]="orderService.totalPrice == 0" touchable (singletap)="charge()" class="btn btn-primary btn-lg btn-block">Charge {{orderService.totalPrice | number: '1.2-2'}}฿</button>
+            </div>
+        </div>
+    </div>
+    <div class="v-line hidden-sm-down"></div>
+    <div class="bill flex-1 d-flex flex-column hidden-sm-down {{(isBill)? 'active': ''}}">
+        <div class="tbar d-flex flex-row">
+            <a class="d-flex v-center h-center btn-icon hidden-md-up" touchable (singletap)="hideBill()">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <div class="pl-3 hidden-sm-down"></div>
+            <div class="d-flex flex v-center">
+                <span class="page-title">Current Sale ({{orderService.totalQty}})</span>
+            </div>
+            <a class="d-flex v-center h-center btn-icon" (click)="clearBill()">
+                <i class="material-icons">clear_all</i>
+            </a>
+        </div>
+        <div class="h-line"></div>
+        <div class="flex v-scroll bg-light-4">
+            <div *ngFor="let i of orderService.data" class="d-flex flex-row p-3">
+                <div class="flex text-truncate pr-2">{{i.item.name}}</div>
+                <div *ngIf="i.qty > 1" class="color-orange pr-2"><b>x {{i.qty}}</b></div>
+                <b>{{i.item.price * i.qty | number: '1.2-2'}}฿</b>
+            </div>
+        </div>
+        <div class="h-line"></div>
+        <div class="tbar d-flex v-center h-center pl-2 pr-2">
+            <button [disabled]="orderService.totalPrice == 0" touchable (singletap)="charge()" class="btn btn-primary btn-lg btn-block">Charge {{orderService.totalPrice | number: '1.2-2'}}฿</button>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

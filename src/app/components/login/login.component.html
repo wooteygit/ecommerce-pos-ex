@@ -1,0 +1,33 @@
+<div class="fill-dock d-flex h-center v-center">
+    <div class="d-flex flex-column bg-light-4 modal-border w-100-xs-down h-100-xs-down">
+        <div class="d-flex h-center v-center mt-5">
+            <div id="logo"><img class="img-fluid" src="assets/images/logo.png"></div>
+        </div>
+        <div class="flex pt-3 pb-3">
+            <div class="container" style="max-width: 640px">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-8 pm-light-bg p-3">
+                        <form ngNoForm>
+                            <div class="form-group">
+                                <label for="txt-email">Email</label>
+                                <input class="form-control" id="txt-email" type="email" [(ngModel)]="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="txt-password">Password</label>
+                                <input class="form-control" id="txt-password" type="password" [(ngModel)]="password">
+                            </div>
+                            <div class="mt-2 mb-2 text-center">
+                                <button type="button" class="btn btn-primary" (click)="logIn()">Log In</button>
+                            </div>
+                            <div class="text-center mt-3 mb-2">
+                                <span class="pr-1">Not a member?</span>
+                                <a routerLink="/signup">Sign up now</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<spinner [hidden]="!loading" [text]="'Logging in...'"></spinner>

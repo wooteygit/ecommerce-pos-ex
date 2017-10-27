@@ -1,0 +1,18 @@
+a.main-menu {
+    font-size: 1rem;
+}
+
+a.main-menu.active,
+a.main-menu:active {
+    background-color: #424242;
+}
+
+.account-menu {
+    border-bottom: solid 1px #555;
+}
+
+.user-pic {
+    width: 56px;
+    height: 56px;
+    background: #333;
+}
